@@ -11,7 +11,8 @@ define(function (require, exports, module) {
         Constants       = require("CordovaManagerConstants");
 
     var defaultPreferences = {
-		workspace: ""
+		workspace: "",
+		workingdir: ""
 	};
     
     function CordovaSettingsDialog(cordovaManager) {
@@ -20,6 +21,7 @@ define(function (require, exports, module) {
         this.cordovaManager = cordovaManager;
         this.$dialog = $(require("text!html/dialog-settings.html"));
         this.$inputWorkspace = this.$dialog.find('#cordova-settings-workspace');
+        this.$inputWorkingDir = this.$dialog.find('#cordova-settings-workingdir');
     }
     
     CordovaSettingsDialog.prototype.getSettings = function () {
@@ -46,6 +48,19 @@ define(function (require, exports, module) {
                 });
         });
         
+        // Change cwd
+        this.$dialog.find('#cordova-settings-workingdir-change').click(function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            FileSystem.showOpenDialog(false, true, Strings.CHOOSE_FOLDER, Settings.workingdir, null,
+                function (error, files) {
+                    if (!error && files && files.length > 0 && files[0].length > 0) {
+                        self.$dialog.find('#cordova-settings-workingdir').val(files[0]);
+                    }
+                });
+        });
+        
         // On submit
         this.$dialog.find('#cordova-settings-submit').on('click', function (e) {
             e.preventDefault();
@@ -55,6 +70,7 @@ define(function (require, exports, module) {
         
         // Prefill
         this.$inputWorkspace.val(Settings.workspace);
+        this.$inputWorkingDir.val(Settings.workingdir);
                 
         Dialogs.showModalDialogUsingTemplate(this.$dialog);        
     };
@@ -69,6 +85,7 @@ define(function (require, exports, module) {
         
         var Settings = this.getSettings();
         Settings.workspace = this.$inputWorkspace.val();
+        Settings.workingdir = this.$inputWorkingDir.val();
         
         localStorage.setItem(Constants.LOCAL_STORAGE_SETTINGS, JSON.stringify(Settings));
         this.close();

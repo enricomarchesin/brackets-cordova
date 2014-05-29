@@ -40,7 +40,8 @@ define(function (require, exports, module) {
     };
     
     CordovaManager.prototype.runCommand = function (cmd, path) {
-        return this.cordova.execute(cmd, path);
+        var Settings = this.dialogSettings.getSettings();
+        return this.cordova.execute(cmd, (Settings.workingdir!=''?Settings.workingdir:path));
     };
     
     instance = new CordovaManager();
