@@ -40,3 +40,8 @@ After the extension installation is completed, you should see a _Cordova_ menu i
 ![Screenshot](http://img4.hostingpics.net/pics/588504Capturede769cran20140422a768133229.png)
 
 ![Screenshot](http://img4.hostingpics.net/pics/582896Capturede769cran20140422a768121118.png)
+
+
+## Preferences ##
+
+If you need to specify a Cordova working dir different from your project root, use field "Cordova working dir" inside "Preferences".
