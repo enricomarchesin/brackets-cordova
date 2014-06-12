@@ -2,7 +2,7 @@
     "name": "cordova",
     "title": "Cordova",
     "description": " Cordova plugin for Brackets editor. Required ios-deploy (sudo npm install -g ios-deploy) and ios-sim (sudo npm install -g ios-sim).",
-    "version": "0.1.2",
+    "version": "0.1.3",
     "author": "Enrico <github.com@palio.net>",
     "license": "MIT",
     "engines": {
