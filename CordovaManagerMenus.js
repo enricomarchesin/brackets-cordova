@@ -28,6 +28,10 @@ define(function (require, exports, module) {
             'id': 'asi.cordova.menu.android-run',
             'action': function () { self.cordovaManager.runCommand(Constants.CMD_ANDROID_RUN); }
         }, {
+            'title': 'Android - Prepare',
+            'id': 'asi.cordova.menu.android-prepare',
+            'action': function () { self.cordovaManager.runCommand(Constants.CMD_ANDROID_PREPARE); }
+        }, {
             'title': 'Android - Build',
             'id': 'asi.cordova.menu.android-build',
             'action': function () { self.cordovaManager.runCommand(Constants.CMD_ANDROID_BUILD); }
@@ -43,6 +47,10 @@ define(function (require, exports, module) {
             'title': 'iOS - Run',
             'id': 'asi.cordova.menu.ios-run',
             'action': function () { self.cordovaManager.runCommand(Constants.CMD_IOS_RUN); }
+        }, {
+            'title': 'iOS - Prepare',
+            'id': 'asi.cordova.menu.ios-prepare',
+            'action': function () { self.cordovaManager.runCommand(Constants.CMD_IOS_PREPARE); }
         }, {
             'title': 'iOS - Build',
             'id': 'asi.cordova.menu.ios-build',

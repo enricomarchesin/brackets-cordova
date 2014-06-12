@@ -74,6 +74,25 @@ define(function (require, exports, module) {
                 self.$iconCordova.removeClass('process').addClass('open');
             });
         });
+        self.$panel.find('.prepare').on('click', function (e) {
+            e.preventDefault();
+            self.$loader.show();
+            self.$iconCordova.removeClass('open').addClass('process');
+            
+            var device = $(this).parents('[data-device]').attr('data-device');
+            var promise;
+            
+            if (device === Constants.PLATFORM_ANDROID) {
+                promise = self.cordovaManager.runCommand(Constants.CMD_ANDROID_PREPARE);
+            } else if (device === Constants.PLATFORM_IOS) {
+                promise = self.cordovaManager.runCommand(Constants.CMD_IOS_PREPARE);
+            }
+            
+            promise.done(function (data) {
+                self.$loader.hide();
+                self.$iconCordova.removeClass('process').addClass('open');
+            });
+        });
         self.$panel.find('.build').on('click', function (e) {
             e.preventDefault();
             self.$loader.show();
